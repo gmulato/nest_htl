@@ -10,9 +10,8 @@ export class ServicoControllerUpdate{
 
   @HttpCode(HttpStatus.OK)
   @Put(ROUTE.SERVICO.UPDATE)
-  update(@Param('id', ParseIntPipe) id: number, @Body() servicoRequest:ServicoRequest){
-    
-    const response = this.servicoServiceUpdate.update(id, servicoRequest);
-    return response;
+  async update(@Param('id', ParseIntPipe) id: number, @Body() servicoRequest:ServicoRequest){
+
+    return await this.servicoServiceUpdate.update(id, servicoRequest);
   }
 }

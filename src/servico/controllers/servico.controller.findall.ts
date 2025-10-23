@@ -6,10 +6,10 @@ import { ROUTE } from 'src/commons/constants/url.sistema';
 export class ServicoControllerFindAll {
 
   constructor(private readonly servicoServiceFindAll : ServicoServiceFindAll){}
-  
+
   @HttpCode(HttpStatus.OK)
   @Get(ROUTE.SERVICO.LIST)
-  findAll() {
-    return this.servicoServiceFindAll.findAll();
+  async findAll() {
+    return await this.servicoServiceFindAll.findAll();
   }
 }

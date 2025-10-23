@@ -1,15 +1,19 @@
 import { Injectable } from "@nestjs/common";
-import { tabelaServico } from "./tabela.service";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Servico } from "../entity/servico.entity";
 
 @Injectable()
 export class ServicoServiceFindOne{
 
-  private servico = tabelaServico;
-  
-  constructor(){}
+  constructor(
+    @InjectRepository(Servico)
+    private readonly servicoRepository: Repository<Servico>
+  ){}
 
-  findOne(id:number){
-    const servico = this.servico.find((c) => c.servicoId === id);
-    return servico;
+  async findOne(id:number){
+    return await this.servicoRepository.findOne({
+      where: { servicoId: id }
+    });
   }
 }

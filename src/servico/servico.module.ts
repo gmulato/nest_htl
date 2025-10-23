@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServicoControllerFindAll } from './controllers/servico.controller.findall';
 import { ServicoControllerFindOne } from './controllers/servico.controller.findone';
 import { ServicoControllerCreate } from './controllers/servico.controller.create';
@@ -9,6 +10,7 @@ import { ServicoServiceUpdate } from './service/servico.service.update';
 import { ServicoServiceFindAll } from './service/servico.service.findall';
 import { ServicoServiceFindOne } from './service/servico.service.findone';
 import { ServicoServiceRemove } from './service/servico.service.remove';
+import { Servico } from './entity/servico.entity';
 
 const servicoControllers = [
     ServicoControllerFindAll,
@@ -26,7 +28,9 @@ const servicoServices=[
 ]
 
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forFeature([Servico]),
+  ],
   controllers: [
     ...servicoControllers,
   ],

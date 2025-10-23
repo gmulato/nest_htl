@@ -1,25 +1,22 @@
 import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 import { ServicoRequest } from "../dto/request/servico.request";
 import { ConverterServico } from "../dto/converter/servico.converter";
-import { tabelaServico } from "./tabela.service";
+import { Servico } from "../entity/servico.entity";
 
 @Injectable()
 export class ServicoServiceCreate{
 
-  private servicos = tabelaServico;
-  constructor(){}
+  constructor(
+    @InjectRepository(Servico)
+    private readonly servicoRepository: Repository<Servico>
+  ){}
 
-  create(servicoRequest:ServicoRequest){
+  async create(servicoRequest:ServicoRequest){
     const servico = ConverterServico.toServico(servicoRequest);
 
-    const newIdServico = this.servicos.length + 1;
-
-    const newServico = {
-      ...servico,
-      servicoId : newIdServico,
-    };
-
-    this.servicos.push(newServico);
+    const newServico = await this.servicoRepository.save(servico);
 
     const servicoResponse = ConverterServico.toServicoResponse(newServico);
 

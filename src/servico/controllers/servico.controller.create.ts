@@ -10,8 +10,7 @@ export class ServicoControllerCreate {
 
   @HttpCode(HttpStatus.CREATED)
   @Post(ROUTE.SERVICO.CREATE)
-  create(@Body() servicoRequest: ServicoRequest) {
-    const response = this.servicoServiceCreate.create(servicoRequest);
-    return response;
+  async create(@Body() servicoRequest: ServicoRequest) {
+    return await this.servicoServiceCreate.create(servicoRequest);
   }
 }

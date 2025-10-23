@@ -1,29 +1,41 @@
 import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 import { ServicoRequest } from "../dto/request/servico.request";
 import { ConverterServico } from "../dto/converter/servico.converter";
-import { tabelaServico } from "./tabela.service";
+import { Servico } from "../entity/servico.entity";
 
 @Injectable()
 export class ServicoServiceUpdate{
 
-  private servicos = tabelaServico;
+  constructor(
+    @InjectRepository(Servico)
+    private readonly servicoRepository: Repository<Servico>
+  ){}
 
-  constructor(){}
+  async update(id:number, servicoRequest:ServicoRequest){
 
-  update(id:number, servicoRequest:ServicoRequest){
-    
     const servico = ConverterServico.toServico(servicoRequest);
-    const servicoIndex = this.servicos.findIndex((c) => c.servicoId === id);
-    const servicoCadastrada = this.servicos[servicoIndex];
-    const currentDate = new Date();
-    this.servicos[servicoIndex] = {
-      ...servicoCadastrada,
-      ...servico,
-      createdAt: servicoCadastrada.createdAt || currentDate,
-      updatedAt: currentDate
+
+    // Buscar o serviço existente
+    const existingServico = await this.servicoRepository.findOne({
+      where: { servicoId: id }
+    });
+
+    if (!existingServico) {
+      throw new Error('Serviço não encontrado');
     }
 
-    const servicoResponse = ConverterServico.toServicoResponse(this.servicos[servicoIndex]);
+    // Atualizar os dados mantendo o createdAt
+    const updatedServico = {
+      ...existingServico,
+      ...servico,
+      createdAt: existingServico.createdAt // Preservar a data de criação
+    };
+
+    const savedServico = await this.servicoRepository.save(updatedServico);
+
+    const servicoResponse = ConverterServico.toServicoResponse(savedServico);
     return servicoResponse;
   }
 }

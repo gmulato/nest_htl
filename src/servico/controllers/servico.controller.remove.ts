@@ -9,7 +9,7 @@ export class ServicoControllerRemove{
 
   @HttpCode(HttpStatus.OK)
   @Delete(ROUTE.SERVICO.DELETE)
-  remove(@Param('id', ParseIntPipe) id:number){
-    return this.servicoServiceRemove.remove(id);
+  async remove(@Param('id', ParseIntPipe) id:number){
+    return await this.servicoServiceRemove.remove(id);
   }
 }

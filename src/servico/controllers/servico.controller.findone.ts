@@ -8,8 +8,7 @@ export class ServicoControllerFindOne {
 
   @HttpCode(HttpStatus.OK)
   @Get(ROUTE.SERVICO.BY_ID)
-  findOne(@Param('id', ParseIntPipe) id: number) { //ParseIntPipe converte em inteiro
-    const servico = this.servicoServiceFindOne.findOne(id);// + converte a string para um number
-    return servico;
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return await this.servicoServiceFindOne.findOne(id);
   }
 }
