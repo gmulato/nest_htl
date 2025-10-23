@@ -4,27 +4,27 @@ import { BaseEntity } from '../../commons/entity/base.entity';
 @Entity('HTL_SERVICO')
 export class Servico extends BaseEntity {
   @PrimaryGeneratedColumn('increment', {
-    name: 'servico_id',
+    name: 'SERVICO_ID',
     type: 'number',
   })
   servicoId?: number;
 
   @Column({
-    name: 'nome',
+    name: 'NOME',
     type: 'varchar2',
     length: 10,
   })
   nome: string = '';
 
   @Column({
-    name: 'descricao',
+    name: 'DESCRICAO',
     type: 'varchar2',
     length: 50,
   })
   descricao: string = '';
 
   @Column({
-    name: 'valor',
+    name: 'VALOR',
     type: 'number',
   })
   valor: number = 0;
