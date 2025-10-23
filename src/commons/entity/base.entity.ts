@@ -1,10 +1,10 @@
 import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 export abstract class BaseEntity {
-  @CreateDateColumn({ name: 'CREATED_AT' })
+  @CreateDateColumn({ name: 'criado_em' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ name: 'UPDATED_AT' })
+  @UpdateDateColumn({ name: 'atualizado_em' })
   updatedAt!: Date;
 
   constructor(data: Partial<BaseEntity> = {}) {

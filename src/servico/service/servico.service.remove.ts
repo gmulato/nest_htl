@@ -8,7 +8,7 @@ export class ServicoServiceRemove{
   constructor(){}
 
   remove(id:number){
-    const servicoIndex = this.servico.findIndex((c) => c.idServico === id);
+    const servicoIndex = this.servico.findIndex((c) => c.servicoId === id);
     this.servico.splice(servicoIndex, 1);
     return this.servico;
   }

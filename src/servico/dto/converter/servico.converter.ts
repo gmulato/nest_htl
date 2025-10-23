@@ -8,11 +8,12 @@ export class ConverterServico{
   static toServico(servicoRequest: ServicoRequest){
     const servico = new Servico();
 
-    if(servicoRequest.idServico != null){ //se o id não estiver vazio
-      servico.idServico = servicoRequest.idServico;
+    if(servicoRequest.servicoId != null){ //se o id não estiver vazio
+      servico.servicoId = servicoRequest.servicoId;
     }
-    servico.nomeServico = servicoRequest.nomeServico;
-    servico.codServico = servicoRequest.codServico;
+    servico.nome = servicoRequest.nome;
+    servico.descricao = servicoRequest.descricao;
+    servico.valor = servicoRequest.valor;
 
     return servico;
   }
@@ -20,9 +21,10 @@ export class ConverterServico{
   static toServicoResponse(servico: Servico){
 
     const servicoResponse = new ServicoResponse();
-    servicoResponse.idServico = servico.idServico ?? 0;
-    servicoResponse.codServico = servico.codServico;
-    servicoResponse.nomeServico = servico.nomeServico;
+    servicoResponse.servicoId = servico.servicoId ?? 0;
+    servicoResponse.descricao = servico.descricao;
+    servicoResponse.valor = servico.valor;
+    servicoResponse.nome = servico.nome;
 
     return servicoResponse;
   }

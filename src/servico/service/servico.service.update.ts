@@ -13,11 +13,14 @@ export class ServicoServiceUpdate{
   update(id:number, servicoRequest:ServicoRequest){
     
     const servico = ConverterServico.toServico(servicoRequest);
-    const servicoIndex = this.servicos.findIndex((c) => c.idServico === id);
+    const servicoIndex = this.servicos.findIndex((c) => c.servicoId === id);
     const servicoCadastrada = this.servicos[servicoIndex];
+    const currentDate = new Date();
     this.servicos[servicoIndex] = {
       ...servicoCadastrada,
-      ...servico
+      ...servico,
+      createdAt: servicoCadastrada.createdAt || currentDate,
+      updatedAt: currentDate
     }
 
     const servicoResponse = ConverterServico.toServicoResponse(this.servicos[servicoIndex]);

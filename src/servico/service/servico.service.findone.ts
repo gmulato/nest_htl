@@ -9,7 +9,7 @@ export class ServicoServiceFindOne{
   constructor(){}
 
   findOne(id:number){
-    const servico = this.servico.find((c) => c.idServico === id);
+    const servico = this.servico.find((c) => c.servicoId === id);
     return servico;
   }
 }

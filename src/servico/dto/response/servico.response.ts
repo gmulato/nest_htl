@@ -1,5 +1,6 @@
 export class ServicoResponse {
-  idServico: number = 0;
-  codServico: string = '';
-  nomeServico: string = '';
+  servicoId: number = 0;
+  nome: string = '';
+  descricao: string = '';
+  valor: number = 0;
 }

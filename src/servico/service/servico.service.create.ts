@@ -16,7 +16,7 @@ export class ServicoServiceCreate{
 
     const newServico = {
       ...servico,
-      idServico : newIdServico,
+      servicoId : newIdServico,
     };
 
     this.servicos.push(newServico);
