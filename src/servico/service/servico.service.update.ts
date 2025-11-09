@@ -29,8 +29,7 @@ export class ServicoServiceUpdate{
     // Atualizar os dados mantendo o createdAt
     const updatedServico = {
       ...existingServico,
-      ...servico,
-      createdAt: existingServico.createdAt // Preservar a data de criação
+      ...servico
     };
 
     const savedServico = await this.servicoRepository.save(updatedServico);
