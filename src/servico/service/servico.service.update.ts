@@ -15,7 +15,7 @@ export class ServicoServiceUpdate{
 
   async update(id:number, servicoRequest:ServicoRequest){
 
-    const servico = ConverterServico.toServico(servicoRequest);
+    const servico = ConverterServico.toPartial(servicoRequest);
 
     // Buscar o serviço existente
     const existingServico = await this.servicoRepository.findOne({

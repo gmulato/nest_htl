@@ -18,6 +18,25 @@ export class ConverterServico{
     return servico;
   }
 
+  static toPartial(servicoRequest: ServicoRequest): Partial<Servico> {
+    const patch: Partial<Servico> = {};
+
+    if (servicoRequest.servicoId !== undefined) {
+      patch.servicoId = servicoRequest.servicoId;
+    }
+    if (servicoRequest.nome !== undefined) {
+      patch.nome = servicoRequest.nome;
+    }
+    if (servicoRequest.descricao !== undefined) {
+      patch.descricao = servicoRequest.descricao;
+    }
+    if (servicoRequest.valor !== undefined) {
+      patch.valor = servicoRequest.valor;
+    }
+    
+    return patch;
+  }
+
   static toServicoResponse(servico: Servico){
 
     const servicoResponse = new ServicoResponse();
