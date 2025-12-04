@@ -5,6 +5,7 @@ import * as Joi from 'joi';
 import { ServicoModule } from 'src/servico/servico.module';
 import { QuartoModule } from 'src/quarto/quarto.module';
 import { FuncionarioModule } from 'src/funcionario/funcionario.module';
+import { HospedeModule } from 'src/hospede/hospede.module';
 
 const oracledb = require('oracledb');
 
@@ -46,6 +47,7 @@ oracledb.initOracleClient({
     ServicoModule,
     QuartoModule,
     FuncionarioModule,
+    HospedeModule,
   ],
 })
 export class AppModule {}
